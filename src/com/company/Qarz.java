@@ -10,22 +10,13 @@ public class Qarz extends DepositType {
     {
         INTEREST_RATE_VALUE = 0;
     }
-    //final private String TYPE_NAME="Qarz";
 
     public Qarz() {
-        super();
+        setInterestRate();
     }
-
-//    public int getInterestRateValue() {
-//        return this.INTEREST_RATE_VALUE;
-//
-//    }
 
     public void setInterestRate() {
         super.setInterestRate(INTEREST_RATE_VALUE);
     }
-//    public void setTypeName()
-//    {
-//        super.setTypeName(TYPE_NAME);
-//    }
+
 }

@@ -1,8 +1,8 @@
 package com.company;
 
-import com.company.ownexception.InvalidDepositTypeException;
-import com.company.ownexception.InvalidDurationInDaysException;
-import com.company.ownexception.NegativeBalanceException;
+import com.company.exception.InvalidDepositTypeException;
+import com.company.exception.InvalidDurationInDaysException;
+import com.company.exception.NegativeBalanceException;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -12,32 +12,33 @@ import java.util.ArrayList;
 
 /**
  * Created by DOTIN SCHOOL 3 on 1/31/2015.
+ *
  * @author Samira Rezaei
- * in this class we parse your xml file
+ *         in this class we parse your xml file
  */
 public class MyXMLHandler extends DefaultHandler {
-    private ArrayList<Deposit> users;
+    private ArrayList<Deposit> depositList;
 
     private Deposit deposit;
-    Checker checker = new Checker();
+    Validator validator = new Validator();
     boolean boolCustomerNumber = false;
     boolean boolDepositType = false;
     boolean boolDepositBalance = false;
     boolean boolDurationInDays = false;
-    boolean checkBeforeAdd = true;
+    boolean checkedBeforeAdd = true;
 
-    public ArrayList<Deposit> getUsers() {
-        return this.users;
+    public ArrayList<Deposit> getDepositList() {
+        return this.depositList;
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, org.xml.sax.Attributes attributes)
             throws SAXException {
         if (qName.equalsIgnoreCase("deposit")) {
-            checkBeforeAdd = true;
+            checkedBeforeAdd = true;
             deposit = new Deposit();
-            if (users == null)
-                users = new ArrayList<Deposit>();
+            if (depositList == null)
+                depositList = new ArrayList<Deposit>();
         } else if (qName.equalsIgnoreCase("customerNumber")) {
             boolCustomerNumber = true;
         } else if (qName.equalsIgnoreCase("depositType")) {
@@ -51,48 +52,44 @@ public class MyXMLHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String elementName) throws SAXException {
-        if (elementName.equalsIgnoreCase("deposit") && checkBeforeAdd) {
-            users.add(deposit);
+        if (elementName.equalsIgnoreCase("deposit") && checkedBeforeAdd) {
+            depositList.add(deposit);
         }
     }
 
     public void characters(char[] ch, int start, int length) throws SAXException {
         if (boolCustomerNumber) {
-            String st = new String(ch, start, length);
-            deposit.setCustomerNumber(Integer.parseInt(st));
+            deposit.setCustomerNumber(new String(ch, start, length));
             boolCustomerNumber = false;
         }
         // in this part use Reflection for choose type of depositType in runTime!
         else if (boolDepositType) {
             String typeName = new String(ch, start, length);
             try {
-
-                if (checker.checkDepositTypeName(typeName)) {
-                    try {
-                        deposit.madeReflectedObject(deposit, typeName);
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    }
+                if (validator.validateDepositTypeName(typeName)) {
+                    deposit.makeReflectedObject(deposit, typeName);
                 }
-
             } catch (InvalidDepositTypeException ex) {
-                checkBeforeAdd = false;
+                checkedBeforeAdd = false;
                 System.out.println("unknown deposit type for customer number: " + deposit.getCustomerNumber());
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (IllegalAccessException ex) {
+                ex.printStackTrace();
+            } catch (InstantiationException ex) {
+                ex.printStackTrace();
             }
-            deposit.setDepositTypeName(typeName);
+
+            //deposit.setDepositTypeName(typeName);
             boolDepositType = false;
         } else if (boolDepositBalance) {
             BigDecimal depositBalance = new BigDecimal(new String(ch, start, length));
             try {
-                if (checker.checkDepositBalance(depositBalance)) {
+                if (validator.validateDepositBalance(depositBalance)) {
                     deposit.setDepositBalance(depositBalance);
                 }
             } catch (NegativeBalanceException ex) {
-                checkBeforeAdd = false;
+                checkedBeforeAdd = false;
                 System.out.println("Negative deposit balance for customer number: " + deposit.getCustomerNumber());
             }
 
@@ -100,11 +97,11 @@ public class MyXMLHandler extends DefaultHandler {
         } else if (boolDurationInDays) {
             int days = Integer.parseInt(new String(ch, start, length));
             try {
-                if (checker.checkDurationInDays(days)) {
-                    deposit.setdurationInDays(days);
+                if (validator.validateDurationInDays(days)) {
+                    deposit.setDurationInDays(days);
                 }
             } catch (InvalidDurationInDaysException ex) {
-                checkBeforeAdd = false;
+                checkedBeforeAdd = false;
                 System.out.println("invalid duration in days for customer number: " + deposit.getCustomerNumber());
             }
 

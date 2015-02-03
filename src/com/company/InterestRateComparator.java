@@ -8,7 +8,7 @@ import java.util.Comparator;
  * @author Samira Rezaei
  *         compare interest rate
  */
-public class MyInterestRateComparator implements Comparator<Deposit> {
+public class InterestRateComparator implements Comparator<Deposit> {
     @Override
     public int compare(Deposit object1, Deposit object2) {
         return object1.getPayedInterest().compareTo(object2.getPayedInterest());

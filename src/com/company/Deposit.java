@@ -1,9 +1,5 @@
 package com.company;
 
-import com.company.ownexception.InvalidDepositTypeException;
-import com.company.ownexception.InvalidDurationInDaysException;
-import com.company.ownexception.NegativeBalanceException;
-
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -12,33 +8,12 @@ import java.math.MathContext;
  * this class will be used for deposit.
  * have some fields such as customerNumber,depositBalance,...
  */
-public class Deposit {
-    private int customerNumber;
+public class Deposit   {
+    private String customerNumber;
     private BigDecimal depositBalance;
     private BigDecimal payedInterest;
     private int durationInDays;
     private DepositType depositType;
-    private String depositTypeName;
-
-    //constructor
-//    public Deposit(int customerNumber, BigDecimal depositBalance, BigDecimal payedInterest, int durationInDays, DepositType depositType, String depositTypeName) {
-//        this.customerNumber = customerNumber;
-//        this.depositBalance = depositBalance;
-//        this.payedInterest = payedInterest;
-//        this.durationInDays = durationInDays;
-//        this.depositType = depositType;
-//        this.depositTypeName = depositTypeName;
-//    }
-//    public Deposit(int aCustomerNumber, BigDecimal aDepositBalance,
-//                   BigDecimal aPayedInterest, int aDurationInDays) {
-//        this.customerNumber = aCustomerNumber;
-//        this.depositBalance = aDepositBalance;
-//        this.payedInterest = aPayedInterest;
-//        this.durationInDays = aDurationInDays;
-//    }
-
-    public Deposit() {
-    }
 
 
     //setter
@@ -46,32 +21,29 @@ public class Deposit {
         this.payedInterest = value;
     }
 
-    public void setCustomerNumber(int c_NUM) {
-        this.customerNumber = c_NUM;
+    public void setCustomerNumber(String customerNumber) {
+        this.customerNumber = customerNumber;
     }
 
-    public void setDepositBalance(BigDecimal aDepositBalance) {
-        this.depositBalance = aDepositBalance;
+    public void setDepositBalance(BigDecimal depositBalance) {
+        this.depositBalance = depositBalance;
     }
 
-    public void setdurationInDays(int adurationInDays) {
-        this.durationInDays = adurationInDays;
+    public void setDurationInDays(int durationInDays) {
+        this.durationInDays = durationInDays;
     }
 
-    public void setDepositType(DepositType aDepositType) {
-        this.depositType = aDepositType;
+    public void setDepositType(DepositType depositType) {
+        this.depositType = depositType;
     }
 
-    public void setDepositTypeName(String name) {
-        this.depositTypeName = name;
-    }
 
     //getter methods
     public BigDecimal getPayedInterest() {
         return this.payedInterest;
     }
 
-    public int getCustomerNumber() {
+    public String getCustomerNumber() {
         return this.customerNumber;
     }
 
@@ -87,48 +59,45 @@ public class Deposit {
         return this.depositType;
     }
 
-    public String getDepositTypeName() {
-        return this.depositTypeName;
-    }
-
-    public Deposit madeReflectedObject(Deposit aDeposit, String aTypeName) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        Class cls;
-        DepositType obj;
-        cls = Class.forName("com.company." + aTypeName);
-        obj = (DepositType) cls.newInstance();
-        this.setDepositType(obj);
-        return aDeposit;
+    public Deposit makeReflectedObject(Deposit deposit, String typeName) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Class depositTypeClass;
+        DepositType depositType;
+        depositTypeClass = Class.forName("com.company." + typeName);
+        depositType = (DepositType) depositTypeClass.newInstance();
+        this.setDepositType(depositType);
+        return deposit;
     }
 
 
-    public BigDecimal payedInterest() {
-        Checker checker = new Checker();
-        BigDecimal pi;
-        BigDecimal Db = this.getDepositBalance();
-        try {
-            if (!checker.checkDepositTypeName(this))
-                throw new InvalidDepositTypeException("");
-
-        } catch (InvalidDepositTypeException ex) {
-            System.out.println("invalid type...");
-        }
-        try {
-            if (!checker.checkDepositBalance(this.getDepositBalance()))
-                throw new NegativeBalanceException("");
-        } catch (NegativeBalanceException ex) {
-            System.out.println("negative balance...");
-        }
-        try {
-            if (!checker.checkDurationInDays(this.getDurationInDays()))
-                throw new InvalidDurationInDaysException("");
-        } catch (InvalidDurationInDaysException ex) {
-            System.out.println("invalid duration in days...");
-        }
+    public BigDecimal CalculateInterest() {
+        BigDecimal payedInterest;
+        BigDecimal depositBalance = this.getDepositBalance();
+//        try {
+//            if (!checker.validateDepositTypeName(this))
+//                throw new InvalidDepositTypeException("");
+//
+//        } catch (InvalidDepositTypeException ex) {
+//            System.out.println("invalid type...");
+//        }
+//        try {
+//            if (!checker.validateDepositBalance(this.getDepositBalance()))
+//                throw new NegativeBalanceException("");
+//        } catch (NegativeBalanceException ex) {
+//            System.out.println("negative balance...");
+//        }
+//        try {
+//            if (!checker.validateDurationInDays(this.getDurationInDays()))
+//                throw new InvalidDurationInDaysException("");
+//        } catch (InvalidDurationInDaysException ex) {
+//            System.out.println("invalid duration in days...");
+//        }
         int days = this.getDurationInDays();
 
-        pi = Db.multiply(new BigDecimal(this.getDepositType().getInterestRate()), MathContext.DECIMAL128).
-                multiply(new BigDecimal(days), MathContext.DECIMAL128).divide(new BigDecimal(36500), MathContext.DECIMAL128);
-        this.setPayedInterest(pi);
-        return pi;
+        payedInterest = depositBalance.multiply(new BigDecimal(this.getDepositType().getInterestRate())).
+                multiply(new BigDecimal(days)).divide(new BigDecimal(36500), MathContext.DECIMAL128);
+        this.setPayedInterest(payedInterest);
+        return payedInterest;
     }
+
+
 }

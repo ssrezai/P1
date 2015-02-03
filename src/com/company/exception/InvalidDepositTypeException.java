@@ -1,4 +1,4 @@
-package com.company.ownexception;
+package com.company.exception;
 
 /**
  * Created by DOTIN SCHOOL 3 on 2/1/2015.
