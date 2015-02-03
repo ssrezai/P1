@@ -19,7 +19,6 @@ public class Main {
     public static void main(String[] args) throws IOException, IllegalAccessException, InstantiationException, InvalidDepositTypeException, ClassNotFoundException {
 
         MyXMLHandler myXMLHandler = new MyXMLHandler();
-        //MyXMLHandler myXMLHandler2 = new MyXMLHandler();
         SAXParserFactory spf = SAXParserFactory.newInstance();
 
         //user open his/her file!
@@ -34,10 +33,9 @@ public class Main {
                 //calculate interest rate
                 for (int i = 0; i < myXMLHandler.getUsers().size(); i++) {
                     myXMLHandler.getUsers().get(i).payedInterest();
-                    //System.out.println(myXMLHandler.getUsers().get(i).payedInterest());
                 }
                 //sort final list!
-                Collections.sort(myXMLHandler.getUsers(), new MyInterestRateComparetor());
+                Collections.sort(myXMLHandler.getUsers(), new MyInterestRateComparator());
 
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();

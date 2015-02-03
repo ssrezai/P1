@@ -7,8 +7,12 @@ package com.company;
  *         this class inheritance from DepositType
  */
 public class LongTerm extends DepositType {
-    final private int INTEREST_RATE_VALUE = 20;
-    final private String TYPE_NAME = "LongTerm";
+    final private int INTEREST_RATE_VALUE;
+
+    {
+        INTEREST_RATE_VALUE = 20;
+    }
+    // final private String TYPE_NAME = "LongTerm";
 
 
     public LongTerm() {
@@ -20,12 +24,12 @@ public class LongTerm extends DepositType {
         super.setInterestRate(INTEREST_RATE_VALUE);
     }
 
-    public void setTypeName() {
-        super.setTypeName(TYPE_NAME);
-    }
+//    public void setTypeName() {
+//        super.setTypeName(TYPE_NAME);
+//    }
 
-    public int getInterestRateValue() {
-        return this.INTEREST_RATE_VALUE;
-    }
+//    public int getInterestRateValue() {
+//        return this.INTEREST_RATE_VALUE;
+//    }
 
 }

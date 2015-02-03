@@ -4,7 +4,6 @@ import com.company.ownexception.InvalidDepositTypeException;
 import com.company.ownexception.InvalidDurationInDaysException;
 import com.company.ownexception.NegativeBalanceException;
 
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -31,16 +30,15 @@ public class Deposit {
 //        this.depositTypeName = depositTypeName;
 //    }
 //    public Deposit(int aCustomerNumber, BigDecimal aDepositBalance,
-//                   BigDecimal aPayedInterest, int adurationInDays) {
+//                   BigDecimal aPayedInterest, int aDurationInDays) {
 //        this.customerNumber = aCustomerNumber;
 //        this.depositBalance = aDepositBalance;
 //        this.payedInterest = aPayedInterest;
-//        this.durationInDays = adurationInDays;
+//        this.durationInDays = aDurationInDays;
 //    }
 
     public Deposit() {
     }
-
 
 
     //setter
@@ -69,10 +67,10 @@ public class Deposit {
     }
 
     //getter methods
-    public BigDecimal getPayedInterest()
-    {
+    public BigDecimal getPayedInterest() {
         return this.payedInterest;
     }
+
     public int getCustomerNumber() {
         return this.customerNumber;
     }
@@ -92,15 +90,6 @@ public class Deposit {
     public String getDepositTypeName() {
         return this.depositTypeName;
     }
-
-    public boolean checkedType() {
-        if (this.depositTypeName.equals("Qarz") || this.depositTypeName.equals("LongTerm") ||
-                this.depositTypeName.equals("ShortTerm"))
-            return true;
-        else
-            return false;
-    }
-
 
     public Deposit madeReflectedObject(Deposit aDeposit, String aTypeName) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class cls;

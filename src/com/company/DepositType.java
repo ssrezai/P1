@@ -7,7 +7,7 @@ package com.company;
 public abstract class DepositType
 {
     private int interestRate;
-    private String typeName;
+    //private String typeName;
     public DepositType()
     {}
 
@@ -20,12 +20,12 @@ public abstract class DepositType
     {
         this.interestRate=value;
     }
-    public String getTypeName()
-    {
-        return  this.typeName;
-    }
-    public  void setTypeName(String name)
-    {
-        this.typeName=name;
-    }
+//    public String getTypeName()
+//    {
+//        return  this.typeName;
+//    }
+//    public  void setTypeName(String name)
+//    {
+//        this.typeName=name;
+//    }
 }
