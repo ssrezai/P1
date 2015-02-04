@@ -8,10 +8,7 @@ import javax.xml.parsers.SAXParserFactory;
 import com.company.exception.InvalidDepositTypeException;
 import org.xml.sax.SAXException;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Collections;
 
 public class Main {
@@ -44,20 +41,12 @@ public class Main {
                 e.printStackTrace();
             }
             try {
-                File outputFile = new File(selectedFile.getParentFile().getAbsolutePath() + "/output.txt");
-                if (!outputFile.exists()) {
-                    outputFile.createNewFile();
-                }
-
-                FileWriter fileWriter = new FileWriter(outputFile.getAbsoluteFile());
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                RandomAccessFile file = new RandomAccessFile(selectedFile.getParentFile().getAbsolutePath() + "/PayedInterestResult.txt", "rw");
                 for (int i = 0; i < myXMLHandler.getDepositList().size(); i++) {
                     Deposit deposit = myXMLHandler.getDepositList().get(i);
-                    bufferedWriter.write(deposit.getCustomerNumber() + "   #  " + deposit.getPayedInterest());
-                    bufferedWriter.newLine();
+                    file.writeBytes(deposit.getCustomerNumber() + "   #  " + deposit.getPayedInterest() + "\r\n");
                 }
-                bufferedWriter.close();
-
+                file.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
