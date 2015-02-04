@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3645263a-49e3-4721-b3f9-71353598a636" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Deposit.java" afterPath="$PROJECT_DIR$/src/com/company/Deposit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/LongTerm.java" afterPath="$PROJECT_DIR$/src/com/company/LongTerm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/MyXMLHandler.java" afterPath="$PROJECT_DIR$/src/com/company/MyXMLHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Validator.java" afterPath="$PROJECT_DIR$/src/com/company/Validator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/test.xml" afterPath="$PROJECT_DIR$/src/com/company/test.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="P1.iws" />
@@ -558,7 +552,7 @@
       <workItem from="1422960377559" duration="2000" />
       <workItem from="1422960416958" duration="7189000" />
       <workItem from="1422967644690" duration="3151000" />
-      <workItem from="1423024105963" duration="16529000" />
+      <workItem from="1423024105963" duration="16570000" />
     </task>
     <task id="LOCAL-00001" summary="handle warnings!">
       <created>1422963567364</created>
@@ -572,11 +566,15 @@
       <created>1423030575478</created>
       <updated>1423030575478</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="final version">
+      <created>1423051809416</created>
+      <updated>1423051809416</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107852000" />
+    <option name="totallyTimeSpent" value="107893000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -657,7 +655,8 @@
     <MESSAGE value="handle warnings!" />
     <MESSAGE value="refactor" />
     <MESSAGE value="use RandomAccessFile instead of FileWriter and BufferedWriter" />
-    <option name="LAST_COMMIT_MESSAGE" value="use RandomAccessFile instead of FileWriter and BufferedWriter" />
+    <MESSAGE value="final version" />
+    <option name="LAST_COMMIT_MESSAGE" value="final version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
