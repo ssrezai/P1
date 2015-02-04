@@ -20,7 +20,7 @@ public class MyXMLHandler extends DefaultHandler {
     private ArrayList<Deposit> depositList;
 
     private Deposit deposit;
-    Validator validator = new Validator();
+   // Validator validator = new Validator();
     boolean boolCustomerNumber = false;
     boolean boolDepositType = false;
     boolean boolDepositBalance = false;
@@ -66,12 +66,12 @@ public class MyXMLHandler extends DefaultHandler {
         else if (boolDepositType) {
             String typeName = new String(ch, start, length);
             try {
-                if (validator.validateDepositTypeName(typeName)) {
+                if (Validator.validateDepositTypeName(typeName)) {
                     deposit.makeReflectedObject(deposit, typeName);
                 }
             } catch (InvalidDepositTypeException ex) {
                 checkedBeforeAdd = false;
-                System.out.println("unknown deposit type for customer number: " + deposit.getCustomerNumber());
+                System.out.println("Unknown deposit type (" + typeName + ") for customer number: " + deposit.getCustomerNumber());
             } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
             } catch (IllegalAccessException ex) {
@@ -85,24 +85,24 @@ public class MyXMLHandler extends DefaultHandler {
         } else if (boolDepositBalance) {
             BigDecimal depositBalance = new BigDecimal(new String(ch, start, length));
             try {
-                if (validator.validateDepositBalance(depositBalance)) {
+                if (Validator.validateDepositBalance(depositBalance)) {
                     deposit.setDepositBalance(depositBalance);
                 }
             } catch (NegativeBalanceException ex) {
                 checkedBeforeAdd = false;
-                System.out.println("Negative deposit balance for customer number: " + deposit.getCustomerNumber());
+                System.out.println("Negative deposit balance (" + depositBalance + ") for customer number: " + deposit.getCustomerNumber());
             }
 
             boolDepositBalance = false;
         } else if (boolDurationInDays) {
             int days = Integer.parseInt(new String(ch, start, length));
             try {
-                if (validator.validateDurationInDays(days)) {
+                if (Validator.validateDurationInDays(days)) {
                     deposit.setDurationInDays(days);
                 }
             } catch (InvalidDurationInDaysException ex) {
                 checkedBeforeAdd = false;
-                System.out.println("invalid duration in days for customer number: " + deposit.getCustomerNumber());
+                System.out.println("invalid duration in days(" + days + ") for customer number: " + deposit.getCustomerNumber());
             }
 
             boolDurationInDays = false;

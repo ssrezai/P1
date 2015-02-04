@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  *         this class check some wrong situations.
  */
 public class Validator {
-    public boolean validateDepositTypeName(String type) throws InvalidDepositTypeException {
+    public static boolean validateDepositTypeName(String type) throws InvalidDepositTypeException {
         if (type.equals("Qarz") || type.equals("LongTerm") || type.equals("ShortTerm")) {
             return true;
         } else {
@@ -22,7 +22,7 @@ public class Validator {
     }
 
 
-    public boolean validateDepositBalance(BigDecimal value) throws NegativeBalanceException {
+    public static boolean validateDepositBalance(BigDecimal value) throws NegativeBalanceException {
         if (value.compareTo(BigDecimal.ZERO) >= 0) {
             return true;
         } else {
@@ -30,7 +30,7 @@ public class Validator {
         }
     }
 
-    public boolean validateDurationInDays(int days) throws InvalidDurationInDaysException {
+    public static boolean validateDurationInDays(int days) throws InvalidDurationInDaysException {
         if (days > 0) {
             return true;
         } else

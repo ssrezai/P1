@@ -7,11 +7,11 @@ package com.company;
  *         this class inheritance from DepositType
  */
 public class LongTerm extends DepositType {
-    final private int INTEREST_RATE_VALUE;
+    final private int INTEREST_RATE_VALUE = 20;
 
-    {
-        INTEREST_RATE_VALUE = 20;
-    }
+//    {
+//        INTEREST_RATE_VALUE = 20;
+//    }
 
     public LongTerm() {
         super();

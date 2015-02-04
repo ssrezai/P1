@@ -78,6 +78,66 @@
         <depositBalance>850000000000</depositBalance>
         <durationInDays>365</durationInDays>
     </deposit>
+    <deposit>
+        <customerNumber>14</customerNumber>
+        <depositType>qarz</depositType>
+        <depositBalance>500040000</depositBalance>
+        <durationInDays>85</durationInDays>
+    </deposit>
+    <deposit>
+        <customerNumber>15</customerNumber>
+        <depositType>Blob</depositType>
+        <depositBalance>20000000000000000000</depositBalance>
+        <durationInDays>125</durationInDays>
+    </deposit>
+    <deposit>
+        <customerNumber>16</customerNumber>
+        <depositType>ShortTerm</depositType>
+        <depositBalance>50000000000000000</depositBalance>
+        <durationInDays>125</durationInDays>
+    </deposit>
+    <deposit>
+        <customerNumber>17</customerNumber>
+        <depositType>short term</depositType>
+        <depositBalance>5000000000000000000000000</depositBalance>
+        <durationInDays>125</durationInDays>
+    </deposit>
+    <deposit>
+        <customerNumber>18</customerNumber>
+        <depositType>ShortTerm</depositType>
+        <depositBalance>50000000000000000</depositBalance>
+        <durationInDays>0</durationInDays>
+    </deposit>
+     <deposit>
+        <customerNumber>19</customerNumber>
+        <depositType>Qarz</depositType>
+        <depositBalance>5000000000000000000000000</depositBalance>
+        <durationInDays>10</durationInDays>
+    </deposit>
+    <deposit>
+        <customerNumber>20</customerNumber>
+        <depositType>LongTerm</depositType>
+        <depositBalance>5000000000000000000000000</depositBalance>
+        <durationInDays>-5</durationInDays>
+    </deposit>
+    <deposit>
+        <customerNumber>21</customerNumber>
+        <depositType>LongTerm</depositType>
+        <depositBalance>5000000000000000000000000</depositBalance>
+        <durationInDays>1</durationInDays>
+    </deposit>
+    <deposit>
+        <customerNumber>22</customerNumber>
+        <depositType>ShortTerm</depositType>
+        <depositBalance>5000000000000000000000000</depositBalance>
+        <durationInDays>58</durationInDays>
+    </deposit>
+    <deposit>
+        <customerNumber>23</customerNumber>
+        <depositType>LongTerm</depositType>
+        <depositBalance>850000000000</depositBalance>
+        <durationInDays>365</durationInDays>
+    </deposit>
 
 </deposits>
 

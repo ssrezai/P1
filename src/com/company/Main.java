@@ -29,11 +29,10 @@ public class Main {
                 saxParser.parse(selectedFile, myXMLHandler);
                 //calculate interest rate
                 for (int i = 0; i < myXMLHandler.getDepositList().size(); i++) {
-                    myXMLHandler.getDepositList().get(i).CalculateInterest();
+                    myXMLHandler.getDepositList().get(i).calculatePayedInterest();
                 }
                 //sort final list!
-                Collections.sort(myXMLHandler.getDepositList(), new InterestRateComparator());
-
+                Collections.sort(myXMLHandler.getDepositList(), new InterestRateComparator().reversed());
 
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();
@@ -44,7 +43,7 @@ public class Main {
                 RandomAccessFile file = new RandomAccessFile(selectedFile.getParentFile().getAbsolutePath() + "/PayedInterestResult.txt", "rw");
                 for (int i = 0; i < myXMLHandler.getDepositList().size(); i++) {
                     Deposit deposit = myXMLHandler.getDepositList().get(i);
-                    file.writeBytes(deposit.getCustomerNumber() + "   #  " + deposit.getPayedInterest() + "\r\n");
+                    file.writeBytes(deposit.getCustomerNumber() + "\t#\t" + deposit.getPayedInterest() + "\r\n");
                 }
                 file.close();
             } catch (IOException e) {

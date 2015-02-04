@@ -8,7 +8,7 @@ import java.math.MathContext;
  * this class will be used for deposit.
  * have some fields such as customerNumber,depositBalance,...
  */
-public class Deposit   {
+public class Deposit {
     private String customerNumber;
     private BigDecimal depositBalance;
     private BigDecimal payedInterest;
@@ -59,6 +59,7 @@ public class Deposit   {
         return this.depositType;
     }
 
+    //required methods
     public Deposit makeReflectedObject(Deposit deposit, String typeName) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class depositTypeClass;
         DepositType depositType;
@@ -68,35 +69,14 @@ public class Deposit   {
         return deposit;
     }
 
-
-    public BigDecimal CalculateInterest() {
+    public void calculatePayedInterest() {
         BigDecimal payedInterest;
         BigDecimal depositBalance = this.getDepositBalance();
-//        try {
-//            if (!checker.validateDepositTypeName(this))
-//                throw new InvalidDepositTypeException("");
-//
-//        } catch (InvalidDepositTypeException ex) {
-//            System.out.println("invalid type...");
-//        }
-//        try {
-//            if (!checker.validateDepositBalance(this.getDepositBalance()))
-//                throw new NegativeBalanceException("");
-//        } catch (NegativeBalanceException ex) {
-//            System.out.println("negative balance...");
-//        }
-//        try {
-//            if (!checker.validateDurationInDays(this.getDurationInDays()))
-//                throw new InvalidDurationInDaysException("");
-//        } catch (InvalidDurationInDaysException ex) {
-//            System.out.println("invalid duration in days...");
-//        }
         int days = this.getDurationInDays();
-
+        //calculate
         payedInterest = depositBalance.multiply(new BigDecimal(this.getDepositType().getInterestRate())).
                 multiply(new BigDecimal(days)).divide(new BigDecimal(36500), MathContext.DECIMAL128);
         this.setPayedInterest(payedInterest);
-        return payedInterest;
     }
 
 
